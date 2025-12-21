@@ -8,10 +8,7 @@ import (
 )
 
 // Config holds all application configuration
-type Config struct {
-	Port string
-	Env  string
-}
+type Config struct{}
 
 // Load reads configuration from .env.local file and environment variables
 // Environment variables take priority over file values
@@ -19,10 +16,7 @@ func Load() *Config {
 	// Try to load .env.local file (ignore error if file doesn't exist)
 	_ = godotenv.Load(".env.local")
 
-	cfg := &Config{
-		Port: mustGetEnv("PORT"),
-		Env:  mustGetEnv("ENV"),
-	}
+	cfg := &Config{}
 
 	return cfg
 }
