@@ -2,6 +2,11 @@
 
 A simple Model Context Protocol (MCP) server implementation in Go.
 
+This project provides two MCP server implementations:
+
+- **Official SDK** (`cmd/go-sdk`) - Using [modelcontextprotocol/go-sdk](https://github.com/modelcontextprotocol/go-sdk)
+- **Third-party SDK** (`cmd/mark3labs`) - Using [mark3labs/mcp-go](https://github.com/mark3labs/mcp-go)
+
 ## What is MCP?
 
 MCP (Model Context Protocol) is a standard protocol that enables AI assistants to use external tools and resources.
@@ -38,7 +43,7 @@ Create or edit `~/.cursor/mcp_config.json`:
 {
   "mcpServers": {
     "simple-mcp": {
-      "command": "/Users/WonjinSin/Documents/project/simple-mcp/bin/server",
+      "command": "/Users/WonjinSin/Documents/project/simple-mcp/bin/mark3labs",
       "args": []
     }
   }
@@ -52,7 +57,7 @@ Create or edit `~/.cursor/mcp_config.json`:
   "mcpServers": {
     "simple-mcp": {
       "command": "go",
-      "args": ["run", "/Users/WonjinSin/Documents/project/simple-mcp/cmd/server/main.go"],
+      "args": ["run", "/Users/WonjinSin/Documents/project/simple-mcp/cmd/mark3labs/main.go"],
       "cwd": "/Users/WonjinSin/Documents/project/simple-mcp"
     }
   }
@@ -70,4 +75,5 @@ Completely quit and restart Cursor to activate the MCP server.
 ## Resources
 
 - [MCP Specification](https://spec.modelcontextprotocol.io/)
+- [go-sdk](https://github.com/modelcontextprotocol/go-sdk)
 - [mcp-go](https://github.com/mark3labs/mcp-go)
