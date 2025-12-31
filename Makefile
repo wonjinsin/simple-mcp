@@ -6,7 +6,6 @@ BINARY_NAME = bin/server
 MAIN = $(BASE_PATH)/cmd/server/main.go
 GOLINT = $(BIN)/golint
 GOBIN = $(shell go env GOPATH)/bin
-MOCK = $(GOBIN)/mockgen
 PKG_LIST = $(shell cd $(BASE_PATH) && cat pkg.list)
 
 
@@ -19,7 +18,6 @@ endif
 .PHONY: tool
 tool:
 	go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
-	go install go.uber.org/mock/mockgen@latest
 
 .PHONY: build
 build:
@@ -38,16 +36,11 @@ lint:
 	$(GOBIN)/golangci-lint run
 
 .PHONY: test
-test: build-mocks
+test:
 	go test -v -cover ./...
 
 .PHONY: test-all
 test-all: test vet fmt lint
-
-.PHONY: build-mocks
-build-mocks:
-	$(MOCK) -source=internal/usecase/service.go -destination=mock/mock_service.go -package=mock
-	$(MOCK) -source=internal/repository/repository.go -destination=mock/mock_repository.go -package=mock
 
 .PHONY: init
 init: 
@@ -75,7 +68,7 @@ start: build
 	@$(BINARY_NAME)
 
 .PHONY: all
-all: tool init tidy vendor build-mocks build
+all: tool init tidy vendor build
 
 .PHONY: clean
 clean:; $(info cleaning…) @ 

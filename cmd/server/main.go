@@ -8,20 +8,11 @@ import (
 
 	"github.com/mark3labs/mcp-go/mcp"
 	"github.com/mark3labs/mcp-go/server"
-
-	"github.com/wonjinsin/simple-mcp/internal/config"
-	"github.com/wonjinsin/simple-mcp/pkg/logger"
 )
 
 func main() {
 	// Set timezone to UTC for the entire program
 	time.Local = time.UTC
-
-	// Load configuration
-	_ = config.Load()
-
-	// Initialize logger
-	logger.Initialize("local")
 
 	// Create a new MCP server
 	s := server.NewMCPServer(
